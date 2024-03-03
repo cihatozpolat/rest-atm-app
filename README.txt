@@ -25,7 +25,8 @@ Start the spring rest server application container;
 
 Use Postman to add some accounts to database for the demo;
 1- Open postman and create a PUT request
-2- Set URL to http://localhost:8080/accounts/new/1111222233334444/1234	(card number should be 16 chars and PIN should be 4 numerical characters)
+2- Set Authorization to "No Auth"
+2- Set URL to http://localhost:8080/accounts/new/1111222233334444/1234	(card number should be 16 and PIN should be 4 numerical characters)
 3- Send the request to the server
 
 Available urls for REST API;
