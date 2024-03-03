@@ -37,19 +37,19 @@ public class UserAccountService {
 	}
 
 	public boolean changeCardPin(String cardNumber, String newPIN) throws IOException {
-		String apiUrl = API_URL + "changePin" + cardNumber + slash + newPIN;
+		String apiUrl = API_URL + cardNumber + "/pin?newPin=" + newPIN;
 		String jsonResponse = sendPutRequest(apiUrl);
 		return jsonResponse.equals("success");
 	}
 
 	public boolean deposit(String cardNumber, double amount) throws IOException {
-		String apiUrl = API_URL + "deposit" + slash + cardNumber + slash + amount;
+		String apiUrl = API_URL + cardNumber + "/deposit?amount=" + amount;
 		String jsonResponse = sendPutRequest(apiUrl);
 		return jsonResponse.equals("success");
 	}
 
 	public boolean withdraw(String cardNumber, double amount) throws IOException {
-		String apiUrl = API_URL + "withdraw" + slash + cardNumber + slash + amount;
+		String apiUrl = API_URL + cardNumber + "/withdraw?amount=" + amount;
 		String jsonResponse = sendPutRequest(apiUrl);
 		return jsonResponse.equals("success");
 	}

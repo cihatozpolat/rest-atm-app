@@ -49,7 +49,7 @@ public class UserAccountService {
 	}
 
 	public boolean withdraw(String cardNumber, double amount) throws IOException {
-		String apiUrl = API_URL + "withdraw" + slash + cardNumber + slash + amount;
+		String apiUrl = API_URL + cardNumber + "/withdraw?amount=" + amount;
 		String jsonResponse = sendPutRequest(apiUrl);
 		return jsonResponse.equals("success");
 	}

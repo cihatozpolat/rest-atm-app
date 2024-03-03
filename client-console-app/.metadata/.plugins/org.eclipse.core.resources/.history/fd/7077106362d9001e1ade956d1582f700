@@ -24,32 +24,32 @@ public class UserAccountService {
 	}
 
 	public UserAccount login(String cardNumber, String PIN) throws IOException {
-		String apiUrl = API_URL + "login" + slash + cardNumber + slash + PIN;
+		String apiUrl = API_URL + cardNumber + slash + PIN;
 		String jsonResponse = sendGetRequest(apiUrl);
 		return buildAccountFromResponse(jsonResponse);
 	}
 
 	public double getBalance(String cardNumber) throws IOException {
-		String apiUrl = API_URL + "balance" + slash + cardNumber;
+		String apiUrl = API_URL + cardNumber + "/balance";
 		String jsonResponse = sendGetRequest(apiUrl);
 		JSONObject jsonObject = new JSONObject(jsonResponse);
 		return jsonObject.getDouble("balance");
 	}
 
 	public boolean changeCardPin(String cardNumber, String newPIN) throws IOException {
-		String apiUrl = API_URL + "changePin" + cardNumber + slash + newPIN;
+		String apiUrl = API_URL + cardNumber + "/pin?newPin=" + newPIN;
 		String jsonResponse = sendPutRequest(apiUrl);
 		return jsonResponse.equals("success");
 	}
 
 	public boolean deposit(String cardNumber, double amount) throws IOException {
-		String apiUrl = API_URL + "deposit" + slash + cardNumber + slash + amount;
+		String apiUrl = API_URL + cardNumber + "/deposit?amount=" + amount;
 		String jsonResponse = sendPutRequest(apiUrl);
 		return jsonResponse.equals("success");
 	}
 
 	public boolean withdraw(String cardNumber, double amount) throws IOException {
-		String apiUrl = API_URL + "withdraw" + slash + cardNumber + slash + amount;
+		String apiUrl = API_URL + cardNumber + "/withdraw?amount=" + amount;
 		String jsonResponse = sendPutRequest(apiUrl);
 		return jsonResponse.equals("success");
 	}
