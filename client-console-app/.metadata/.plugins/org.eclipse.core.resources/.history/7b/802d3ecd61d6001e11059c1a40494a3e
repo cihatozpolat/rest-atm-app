@@ -1,0 +1,13 @@
+package main;
+
+public class Account {
+	private double balance;
+	private String cardNumber;
+	private String pinCode;
+	
+	public Account(double balance, String cardNumber, String pinCode) {
+		this.balance = balance;
+		this.cardNumber = cardNumber;
+		this.pinCode = pinCode;
+	}
+}

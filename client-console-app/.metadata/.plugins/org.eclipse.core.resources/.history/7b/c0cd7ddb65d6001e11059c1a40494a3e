@@ -1,0 +1,19 @@
+package command;
+
+import service.UserAccountService;
+
+public class WithdrawCommand implements Command{
+
+	private final UserAccountService accountService;
+	
+	public WithdrawCommand(UserAccountService accountService) {
+		this.accountService = accountService;
+	}
+	
+	@Override
+	public void execute() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

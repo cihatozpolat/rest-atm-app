@@ -1,0 +1,25 @@
+package command;
+
+import java.io.IOException;
+
+import account.UserAccount;
+import service.UserAccountService;
+
+public class ChangeCardPINCommand implements Command {
+
+	private final UserAccountService accountService;
+	private final String newPIN;
+	
+	public ChangeCardPINCommand(UserAccountService accountService, String newPIN) {
+		this.accountService = accountService;
+		this.newPIN = newPIN;
+	}
+
+	@Override
+	public void execute(UserAccount account) throws NumberFormatException, IOException {
+		if (accountService.changeCardPin(account.getCardNumber(), newPIN)) {
+			account.setPinCode(newPIN);
+		}
+	}
+
+}

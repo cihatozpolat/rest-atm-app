@@ -1,0 +1,19 @@
+package command;
+
+import service.UserAccountService;
+
+public class ChangeCardPINCommand implements Command {
+
+	private final UserAccountService accountService;
+	
+	public ChangeCardPINCommand(UserAccountService accountService) {
+		this.accountService = accountService;
+	}
+	
+	@Override
+	public void execute() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

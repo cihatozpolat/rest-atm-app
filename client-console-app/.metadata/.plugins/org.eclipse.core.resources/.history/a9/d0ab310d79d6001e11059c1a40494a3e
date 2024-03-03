@@ -1,0 +1,100 @@
+package service;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import org.json.JSONObject;
+
+import account.UserAccount;
+
+public class UserAccountService {
+    private static final String API_BASE_URL = "https://api.example.com/accounts/";
+
+    private static UserAccountService instance;
+
+    private UserAccountService() {
+    }
+
+    public static UserAccountService getInstance() {
+        if (instance == null) {
+        	instance = new UserAccountService();
+        }
+        return instance;
+    }
+
+    public boolean login(String cardNumber, String PIN) throws IOException {
+    	// data gonderme kismini düzelt
+        String apiUrl = API_BASE_URL;
+        String jsonResponse = sendGetRequest(apiUrl);
+        return jsonResponse.equals("success");
+    }
+    
+    public double getBalance(String cardNumber) throws IOException {
+        String apiUrl = API_BASE_URL + cardNumber + "/balance";
+        String jsonResponse = sendGetRequest(apiUrl);
+        return Double.parseDouble(jsonResponse);
+    }
+
+    public boolean changeCardPin(String cardNumber, String newPIN) throws IOException {
+        String apiUrl = API_BASE_URL + cardNumber + "/pin?newPin=" + newPIN;
+        String jsonResponse = sendPutRequest(apiUrl);
+        return jsonResponse.equals("success");
+    }
+
+    public double deposit(String cardNumber, double amount) throws IOException {
+        String apiUrl = API_BASE_URL + cardNumber + "/deposit?amount=" + amount;
+        String jsonResponse = sendPutRequest(apiUrl);
+        return Double.parseDouble(jsonResponse);
+    }
+
+    public double withdraw(String cardNumber, double amount) throws IOException {
+        String apiUrl = API_BASE_URL + cardNumber + "/withdraw?amount=" + amount;
+        String jsonResponse = sendPutRequest(apiUrl);
+        return Double.parseDouble(jsonResponse);
+    }
+
+    private String sendGetRequest(String apiUrl) throws IOException {
+        URL url = new URL(apiUrl);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+            StringBuilder response = new StringBuilder();
+            String inputLine;
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            return response.toString();
+        } finally {
+            conn.disconnect();
+        }
+    }
+
+    private String sendPutRequest(String apiUrl) throws IOException {
+        URL url = new URL(apiUrl);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("PUT");
+
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+            StringBuilder response = new StringBuilder();
+            String inputLine;
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            return response.toString();
+        } finally {
+            conn.disconnect();
+        }
+    }
+    
+    public UserAccount buildAccountFromResponse(String response) {
+    	JSONObject jsonObject = new JSONObject(response);
+    	double balance = jsonObject.getDouble("balance");
+    	String cardNumber = jsonObject.getString("cardNumber");
+    	String pinCode = jsonObject.getString("pinCode");
+    	
+    	return new UserAccount(balance, cardNumber, pinCode);
+    }
+}

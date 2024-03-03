@@ -1,0 +1,25 @@
+package account;
+
+public class Account {
+	private double balance;
+	private String cardNumber;
+	private String pinCode;
+	
+	public Account(double balance, String cardNumber, String pinCode) {
+		this.balance = balance;
+		this.cardNumber = cardNumber;
+		this.pinCode = pinCode;
+	}
+
+	public double getBalance() {
+		return balance;
+	}
+
+	public String getCardNumber() {
+		return cardNumber;
+	}
+
+	public String getPinCode() {
+		return pinCode;
+	}
+}

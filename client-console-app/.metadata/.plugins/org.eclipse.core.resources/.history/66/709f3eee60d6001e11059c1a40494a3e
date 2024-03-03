@@ -1,0 +1,7 @@
+package main;
+
+import main.Command;
+
+public class AvailableBalanceCommand implements Command {
+
+}

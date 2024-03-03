@@ -1,0 +1,26 @@
+package command;
+
+import java.io.IOException;
+
+import account.UserAccount;
+import service.UserAccountService;
+
+public class WithdrawCommand implements Command{
+
+	private final UserAccountService accountService;
+	private final double amount;
+	
+	public WithdrawCommand(UserAccountService accountService, double amount) {
+		this.accountService = accountService;
+		this.amount = amount;
+	}
+
+	@Override
+	public void execute(UserAccount account) throws NumberFormatException, IOException {
+		// REST API will return the amount if the request is successful
+		double balance = accountService.withdraw(account.getCardNumber(), amount);
+		account.setBalance(balance);
+		
+	}
+
+}

@@ -1,0 +1,5 @@
+package main.commands;
+
+public class DepositCashCommand implements Command{
+
+}

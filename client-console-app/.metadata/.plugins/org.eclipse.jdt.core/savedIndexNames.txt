@@ -1,0 +1,20 @@
+INDEX VERSION 1.131+D:\Users\cozpolat.MERA\Desktop\atm-app\client-console-app\.metadata\.plugins\org.eclipse.jdt.core
+3369123605.index
+1986697058.index
+2809055123.index
+1922467599.index
+1577123206.index
+1560618412.index
+3321127740.index
+2544686619.index
+362875962.index
+2502943107.index
+450947345.index
+38137774.index
+1857081693.index
+664406979.index
+283920910.index
+3387227252.index
+4290671003.index
+2845630747.index
+587207678.index

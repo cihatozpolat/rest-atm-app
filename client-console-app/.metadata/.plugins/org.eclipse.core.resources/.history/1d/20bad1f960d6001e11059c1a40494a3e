@@ -1,0 +1,7 @@
+package main.commands;
+
+import main.Command;
+
+public class ChangeCardPINCommand implements Command {
+
+}

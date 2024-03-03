@@ -1,0 +1,21 @@
+package command;
+
+import java.io.IOException;
+
+import account.UserAccount;
+import service.UserAccountService;
+
+public class LoginCommand implements Command{
+	private final UserAccountService accountService;
+	
+	public LoginCommand(UserAccountService accountService) {
+		this.accountService = accountService;
+	}
+
+	@Override
+	public void execute(UserAccount account) throws NumberFormatException, IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

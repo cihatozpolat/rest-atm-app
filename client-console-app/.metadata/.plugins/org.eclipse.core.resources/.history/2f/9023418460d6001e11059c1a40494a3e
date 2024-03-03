@@ -1,0 +1,10 @@
+package main;
+
+public class CheckBalanceCommand implements Command {
+	
+	public void execute() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
