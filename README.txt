@@ -30,7 +30,7 @@ Use Postman to add some accounts to database for the demo;
 3- Send the request to the server
 
 Available urls for REST API;
-  URL template is http://localhost:8080/accounts/login/{cardNumber}/{pin}
+  URL template is http://localhost:8080/accounts/login/{cardNumber}/{pin} or http://localhost:8080/accounts/login/{cardNumber}/{amount}
 - GET request for all account details - http://localhost:8080/accounts/login/1111222233334444/1234
 - GET request for the balance - http://localhost:8080/accounts/balance/1111222233334444
 - PUT request for deposit - http://localhost:8080/accounts/deposit/1111222233334444/1500
