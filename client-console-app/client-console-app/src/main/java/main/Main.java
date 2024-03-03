@@ -8,6 +8,10 @@ import service.UserAccountService;
 
 public class Main {
 
+	public static boolean validateInputs(String cardNumber, String pin) {
+		return cardNumber.length() < 16 || cardNumber.length() > 16 || pin.length() < 4 || pin.length() > 4;
+	}
+
 	public static void main(String[] args) {
 		try {
 			ATM atm = new ATM();
@@ -15,11 +19,19 @@ public class Main {
 			UserAccountService accountService = UserAccountService.getInstance();
 
 			while (true) {
-				System.out.print("Enter your card number: ");
+				System.out.print("Enter your card number\n");
 				String cardNumber = reader.readLine();
 
-				System.out.print("Enter your PIN: ");
+				System.out.print("Enter your PIN\n");
 				String pin = reader.readLine();
+
+				cardNumber.replaceAll("[^0-9]", "");
+				pin = pin.replaceAll("[^0-9]", "");
+
+				if (validateInputs(cardNumber, pin)) {
+					System.out.println("Invalid credentials, card number should be 16 and pin should be 4 numerical characters!");
+					continue;
+				}
 
 				UserAccount account = accountService.login(cardNumber, pin);
 

@@ -38,15 +38,15 @@ public class UserAccountService {
         return ResponseEntity.ok("success");
     }
 
-    public ResponseEntity<UserAccount> deposit(String cardNumber, double amount) throws NoSuchElementException {
+    public ResponseEntity<String> deposit(String cardNumber, double amount) throws NoSuchElementException {
         Optional<UserAccount> optionalAccount = userAccountRepository.findByCardNumber(cardNumber);
         UserAccount userAccount = optionalAccount.orElseThrow(NoSuchElementException::new);
         userAccount.deposit(amount);
         userAccountRepository.save(userAccount);
-        return ResponseEntity.ok(userAccount);
+        return ResponseEntity.ok("success");
     }
 
-    public ResponseEntity<UserAccount> withdraw(String cardNumber, double amount) throws NoSuchElementException {
+    public ResponseEntity<String> withdraw(String cardNumber, double amount) throws NoSuchElementException {
         Optional<UserAccount> optionalAccount = userAccountRepository.findByCardNumber(cardNumber);
         UserAccount userAccount = optionalAccount.orElseThrow(NoSuchElementException::new);
 
@@ -55,7 +55,7 @@ public class UserAccountService {
         }
         userAccount.withdraw(amount);
         userAccountRepository.save(userAccount);
-        return ResponseEntity.ok(userAccount);
+        return ResponseEntity.ok("success");
     }
 
     public ResponseEntity<UserAccount> save(String cardNumber, String PIN) {

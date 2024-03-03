@@ -21,6 +21,7 @@ public class WithdrawCommand implements Command{
 	public void execute() throws NumberFormatException, IOException {
 		if (accountService.withdraw(account.getCardNumber(), amount)) {
 			account.setBalance(accountService.getBalance(account.getCardNumber()));
+			System.out.println("\nWithdraw completed succesfully, new balance is $" + account.getBalance());
 		}else {
 			throw new IOException("Failed to withdraw from account.");
 		}

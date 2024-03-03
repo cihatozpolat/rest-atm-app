@@ -20,6 +20,7 @@ public class AvailableBalanceCommand implements Command {
 		double balance = accountService.getBalance(account.getCardNumber());
 		if (balance >= 0L) {
 			account.setBalance(balance);
+			System.out.println("\n Available balance is $" + account.getBalance());
 		} else {
 			throw new IOException("Failed to get balance of the account.");
 		}

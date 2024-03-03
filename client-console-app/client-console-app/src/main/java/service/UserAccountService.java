@@ -10,7 +10,7 @@ import org.json.JSONObject;
 import account.UserAccount;
 
 public class UserAccountService {
-	private static final String API_URL = "https://localhost:8080/accounts/";
+	private static final String API_URL = "http://localhost:8080/accounts/";
 	private static final String slash = "/";
 	private static UserAccountService instance;
 
@@ -31,27 +31,26 @@ public class UserAccountService {
 
 	public double getBalance(String cardNumber) throws IOException {
 		String apiUrl = API_URL + "balance" + slash + cardNumber;
-		String jsonResponse = sendGetRequest(apiUrl);
-		JSONObject jsonObject = new JSONObject(jsonResponse);
-		return jsonObject.getDouble("balance");
+		String response = sendGetRequest(apiUrl);
+		return Double.parseDouble(response);
 	}
 
 	public boolean changeCardPin(String cardNumber, String newPIN) throws IOException {
-		String apiUrl = API_URL + "changePin" + cardNumber + slash + newPIN;
-		String jsonResponse = sendPutRequest(apiUrl);
-		return jsonResponse.equals("success");
+		String apiUrl = API_URL + "changePin" + slash + cardNumber + slash + newPIN;
+		String response = sendPutRequest(apiUrl);
+		return response.equals("success");
 	}
 
 	public boolean deposit(String cardNumber, double amount) throws IOException {
 		String apiUrl = API_URL + "deposit" + slash + cardNumber + slash + amount;
-		String jsonResponse = sendPutRequest(apiUrl);
-		return jsonResponse.equals("success");
+		String response = sendPutRequest(apiUrl);
+		return response.equals("success");
 	}
 
 	public boolean withdraw(String cardNumber, double amount) throws IOException {
 		String apiUrl = API_URL + "withdraw" + slash + cardNumber + slash + amount;
-		String jsonResponse = sendPutRequest(apiUrl);
-		return jsonResponse.equals("success");
+		String response = sendPutRequest(apiUrl);
+		return response.equals("success");
 	}
 
 	private String sendGetRequest(String apiUrl) throws IOException {
@@ -92,7 +91,7 @@ public class UserAccountService {
 		JSONObject jsonObject = new JSONObject(response);
 		double balance = jsonObject.getDouble("balance");
 		String cardNumber = jsonObject.getString("cardNumber");
-		String pinCode = jsonObject.getString("pinCode");
+		String pinCode = jsonObject.getString("pin");
 
 		if (balance < 0L || cardNumber == null || pinCode == null) {
 			return null;

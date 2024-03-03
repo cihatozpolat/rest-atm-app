@@ -29,12 +29,12 @@ public class UserAccountController {
     }
 
     @PutMapping("/accounts/deposit/{cardNumber}/{amount}")
-    public ResponseEntity<UserAccount> deposit(@PathVariable String cardNumber, @PathVariable double amount) throws IOException {
+    public ResponseEntity<String> deposit(@PathVariable String cardNumber, @PathVariable double amount) throws IOException {
         return userAccountService.deposit(cardNumber, amount);
     }
 
     @PutMapping("/accounts/withdraw/{cardNumber}/{amount}")
-    public ResponseEntity<UserAccount> withdraw(String cardNumber, double amount) throws IOException {
+    public ResponseEntity<String> withdraw(@PathVariable String cardNumber, @PathVariable double amount) throws IOException {
         return userAccountService.withdraw(cardNumber, amount);
     }
 

@@ -21,6 +21,7 @@ public class ChangeCardPINCommand implements Command {
 	public void execute() throws NumberFormatException, IOException {
 		if (accountService.changeCardPin(account.getCardNumber(), newPIN)) {
 			account.setPinCode(newPIN);
+			System.out.println("\nCard PIN is succesfully changed!");
 		}else {
 			throw new IOException("Failed to change card PIN.");
 		}

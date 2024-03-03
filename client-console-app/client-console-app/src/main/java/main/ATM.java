@@ -14,7 +14,7 @@ public class ATM {
     }
 
     public int getMenuChoice() throws IOException {
-        System.out.println("Welcome to the ATM");
+        System.out.println("\n\nWelcome to the ATM");
         System.out.println("1. Check Balance");
         System.out.println("2. Deposit");
         System.out.println("3. Withdraw");
@@ -30,7 +30,7 @@ public class ATM {
     }
     
     public String getPINInput() throws IOException {
-        System.out.print("Enter new PIN code: $");
+        System.out.print("Enter new PIN code: ");
         return reader.readLine();
     }
 
